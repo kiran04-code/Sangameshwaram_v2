@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\C Drive bkp\Desktop\BlackAnglerTechTeam\project_2\Sangameshwaram\backend\server.py", line 1, in <module>
+    from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header, UploadFile, File
+ModuleNotFoundError: No module named 'fastapi'

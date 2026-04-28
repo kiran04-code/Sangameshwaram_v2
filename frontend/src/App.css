@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --maroon-primary: #8B1538;
+  --maroon-dark: #6B0F2B;
+  --maroon-light: #A0153E;
+  --gold-primary: #FFD700;
+  --gold-dark: #F4C430;
+  --gold-light: #FFF8DC;
+  --ivory: #FFFFF0;
+  --bg-light: #FFF5F7;
+  --bg-cream: #FFFAF0;
+  --text-dark: #2D1B1E;
+  --text-gray: #5A4A4E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-cream) 100%);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* Traditional Indian Patterns */
+.indian-pattern-bg {
+  position: relative;
+}
+
+.indian-pattern-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(139, 21, 56, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mandala-corner {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%238B1538' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23FFD700' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%238B1538' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='10' fill='none' stroke='%23FFD700' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.mandala-corner.top-left {
+  top: 0;
+  left: 0;
+}
+
+.mandala-corner.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.mandala-corner.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+.mandala-corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1);
+}
+
+.paisley-border {
+  border-image: repeating-linear-gradient(
+    45deg,
+    var(--maroon-primary),
+    var(--maroon-primary) 10px,
+    var(--gold-primary) 10px,
+    var(--gold-primary) 20px
+  ) 1;
+}
+
+/* Glassmorphism Utility Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(139, 21, 56, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.glass-gold {
+  background: rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.glass-ivory {
+  background: rgba(255, 255, 240, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(139, 21, 56, 0.2);
+}
+
+/* Gradient Backgrounds */
+.bg-maroon-gradient {
+  background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon-light) 100%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+}
+
+.bg-indian-gradient {
+  background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--gold-dark) 50%, var(--maroon-primary) 100%);
+}
+
+/* Button Styles */
+.btn-maroon {
+  background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-light) 100%);
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 21, 56, 0.3);
+}
+
+.btn-maroon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 21, 56, 0.4);
+}
+
+.btn-maroon:active {
+  transform: translateY(0);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+  color: var(--maroon-dark);
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Indian Border Decorations */
+.indian-border {
+  border: 3px solid;
+  border-image: linear-gradient(45deg, var(--maroon-primary), var(--gold-primary), var(--maroon-primary)) 1;
+  position: relative;
+}
+
+.indian-border::before,
+.indian-border::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gold-primary);
+}
+
+.indian-border::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.indian-border::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Animated Gradient Border */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-border {
+  position: relative;
+  background: linear-gradient(90deg, var(--maroon-primary), var(--gold-primary), var(--maroon-primary));
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  padding: 2px;
+  border-radius: 16px;
+}
+
+.animated-border-content {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+/* Countdown Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.3),
+    transparent
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Premium Card */
+.premium-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(139, 21, 56, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(139, 21, 56, 0.15);
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--maroon-primary), var(--gold-primary), var(--maroon-primary));
+  border-radius: 16px 16px 0 0;
+}
+
+/* Text Gradient */
+.text-gradient-maroon {
+  background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Language Switcher */
+.lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--ivory);
+  padding: 0.25rem;
+  border-radius: 12px;
+  border: 2px solid var(--gold-primary);
+}
+
+.lang-switcher button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--maroon-primary);
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.lang-switcher button.active {
+  background: var(--maroon-primary);
+  color: white;
+}
+
+.lang-switcher button:hover:not(.active) {
+  background: rgba(139, 21, 56, 0.1);
+}
+
+/* Ticker Animation */
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.ticker-wrapper {
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--maroon-primary), var(--maroon-light));
+  padding: 1rem 0;
+  border-top: 3px solid var(--gold-primary);
+  border-bottom: 3px solid var(--gold-primary);
+}
+
+.ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Decorative Elements */
+.diya-icon {
+  display: inline-block;
+  margin: 0 1rem;
+  color: var(--gold-primary);
+  font-size: 1.5rem;
+}
