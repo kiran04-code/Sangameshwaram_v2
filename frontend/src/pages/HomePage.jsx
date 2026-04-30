@@ -30,6 +30,11 @@ import { motion } from 'framer-motion';
 import HotelGallery from './HotelGallery';
 import Testimonials from './Testimonials';
 import HotelAboutSection from './HotelAboutSection';
+import HeroSection from './Herosection';
+import HeritageAbout from './HotelAboutSection';
+import HeritageCategories from './HeritageCategories';
+import HeritageMenuSection from './HeritageMenu';
+import HeritageReservation from './HeritageReservation';
 const CATEGORY_IMAGE_MAP = {
   BEVERAGES: '/home_html/images/categories/BEVERAGES.jpg',
   MILKSHAKE: '/home_html/images/categories/MILKSHAKE.jpg',
@@ -560,431 +565,160 @@ const HomePage = () => {
     <div className="min-h-screen bg-[linear-gradient(180deg,#FFF8F5_0%,#FFF0E6_100%)]">
       <Header />
 
-      <section
-        className="relative overflow-hidden px-4 pb-12 pt-8 sm:px-6 lg:px-8 lg:pt-20 lg:pb-16"
-        style={{
-          background:
-            'radial-gradient(circle at top left, rgba(214,166,74,0.22), transparent 22%), radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 24%), linear-gradient(135deg, #8B1538 0%, #B51F4D 100%)',
-        }}
-        data-testid="hero-section"
-      >
-        {/* Background Blurs */}
-        <div className="absolute -left-24 -top-24 h-48 w-48 sm:h-72 sm:w-72 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute -right-24 bottom-8 h-48 w-48 sm:h-72 sm:w-72 rounded-full bg-white/10 blur-3xl" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="relative px-2 text-center sm:px-4">
-
-            {/* --- DECORATIVE IMAGES (Now visible on mobile) --- */}
-            {/* Burger: Moved further left/down on mobile so it doesn't hit the title */}
-            <img
-              src="/Burgers.png"
-              alt="Burger special"
-              className="absolute -left-12 top-48 w-32 opacity-40 -rotate-12 sm:opacity-100 lg:left-[-72px] lg:top-28 lg:w-[320px] lg:max-w-[26vw] lg:-rotate-6 rounded-3xl"
-            />
-            {/* Cooler: Tucked in the top left corner */}
-            <img
-              src="/cat3_cooler-removebg-preview.png"
-              alt="Cooler"
-              className="absolute -left-4 top-4 w-16 opacity-30 sm:opacity-100 lg:left-0 lg:top-0 lg:w-[109px] lg:max-w-[26vw] lg:-rotate-6 rounded-3xl"
-            />
-            <img
-              src="/Santa Clara Indian Food GIF by SwarajRestaurant.gif"
-              alt="Live Kitchen"
-              className="absolute -right-8 top-0 w-79 border-[4px] border-white opacity-60 rotate-12 sm:opacity-100 lg:right-[-36px] lg:bottom-10 lg:w-[380px] lg:max-w-[24vw] lg:rotate-6 rounded-3xl"
-            />
-            {/* Sandwich: Top right corner */}
-            {/* <img
-              src="/Sandwiches-removebg-preview(1).png"
-              alt="Cafe sandwich"
-              className="absolute -right-8 top-10 w-28 opacity-40 rotate-12 sm:opacity-100 lg:right-[250px] lg:top-[-75px] lg:w-[200px] lg:max-w-[22vw] lg:rotate-6 rounded-3xl"
-            /> */}
-            {/* Maggi: Bottom right corner */}
-            <img
-              src="/cat5_maggi-removebg-preview.png"
-              alt="Maggi"
-              className="absolute -right-6 top-64 w-20 opacity-30 rotate-10 sm:opacity-100 lg:right-[-26px] lg:top-[260px] lg:w-[160px] lg:max-w-[22vw] lg:rotate-6 rounded-3xl"
-            />
-
-            {/* --- HERO CONTENT --- */}
-            <div className="relative z-10"> {/* Added z-10 to ensure text stays above images */}
-              <span className="mb-4 inline-flex rounded-full bg-white/12 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FFF0D7] sm:text-xs">
-                Fresh cafe comfort in Pune
-              </span>
-
-              <h1
-                className="mx-auto max-w-4xl text-3xl font-bold leading-[1.1] text-white sm:text-5xl md:text-6xl lg:text-7xl"
-                style={{ fontFamily: 'Cormorant Garamond, serif' }}
-              >
-                Order breakfast, mains and drinks. Discover your next favorite bite.
-              </h1>
-
-              <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base md:text-lg">
-                Made for everyday cravings with warm service, bold flavor, and the signature Sangameshwar Cafe touch.
-              </p>
-            </div>
-
-            {/* --- ACTION CARDS --- */}
-            <div className="relative z-10 mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
-              <button
-                type="button"
-                onClick={() => navigate('/contact')}
-                className="group relative flex min-h-[76px] w-full items-center justify-between gap-4 rounded-[24px] border border-[#EBE3D9] bg-white px-5 py-3 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-xl active:scale-[0.98]"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#8B1538]/10 text-[#8B1538] group-hover:bg-[#8B1538] group-hover:text-white transition-all">
-                    <MapPin size={20} strokeWidth={2.2} />
-                  </div>
-                  <div>
-                    <strong className="block text-sm font-bold tracking-tight text-[#2A2022]">Visit or Order Nearby</strong>
-                    <p className="text-[11px] font-medium text-[#6D6163]">Kondhwa Budruk, Pune</p>
-                  </div>
-                </div>
-                <ChevronRight size={16} className="text-[#5E5355] group-hover:text-[#8B1538]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => navigate('/menu')}
-                className="group relative flex min-h-[76px] w-full items-center justify-between gap-4 rounded-[24px] border border-[#EBE3D9] bg-white px-5 py-3 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-xl active:scale-[0.98]"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#8B1538]/10 text-[#8B1538] group-hover:bg-[#8B1538] group-hover:text-white transition-all">
-                    <Search size={20} strokeWidth={2.2} />
-                  </div>
-                  <div>
-                    <strong className="block text-sm font-bold tracking-tight text-[#2A2022]">Search our menu</strong>
-                    <p className="text-[11px] font-medium text-[#6D6163]">Sandwiches, shakes & more</p>
-                  </div>
-                </div>
-                <ChevronRight size={16} className="text-[#5E5355] group-hover:text-[#8B1538]" />
-              </button>
-            </div>
-
-            {/* --- CATEGORY CARDS --- */}
-            <div className="relative z-10 mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                { title: "Burgers", desc: "Layered, filling and packed with cafe flavor.", badge: "Favorite", img: "/home_html/images/categories/BURGERS.jpg", path: 'BURGERS' },
-                { title: "Main Dishes", desc: "Hearty plates and satisfying meals.", badge: "Combos", img: "/home_html/images/categories/PAV_BHAJI_PULAV.jpg", path: 'PAV BHAJI & PULAV' },
-                { title: "Beverages", desc: "Coolers and shakes for every meal.", badge: "Refreshing", img: "/home_html/images/categories/MILKSHAKE.jpg", path: 'BEVERAGES' }
-              ].map((item, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => navigate('/menu', { state: { category: item.path } })}
-                  className="group relative flex min-h-[160px] w-full flex-col justify-between overflow-visible rounded-[32px] border border-[#F0EBE6] bg-white p-6 text-left transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <div className="relative z-10 max-w-[60%]">
-                    <span className="mb-2 inline-block rounded-lg bg-[#8B1538]/5 px-2.5 py-1 text-[9px] font-bold uppercase text-[#8B1538]">{item.badge}</span>
-                    <h3 className="text-xl font-extrabold text-[#1A1516]">{item.title}</h3>
-                    <p className="mt-1 text-[10px] font-medium text-[#827577] line-clamp-2">{item.desc}</p>
-                  </div>
-                  <div className="absolute -bottom-2 -right-2 h-28 w-28 sm:h-32 sm:w-32 transition-transform duration-500 group-hover:scale-110">
-                    <img src={item.img} alt={item.title} className="h-full w-full rounded-full border-[3px] border-white object-cover shadow-lg" />
-                  </div>
-                  <div className="mt-4 flex h-7 w-7 items-center justify-center rounded-full bg-[#F9F8F7] text-[#8B1538] group-hover:bg-[#8B1538] group-hover:text-white transition-all">
-                    <ChevronRight size={16} />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-<HotelAboutSection/>
-      <section className="px-4 py-6" data-testid="categories-section">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#B78E2F]">Browse Categories</p>
-            <h2 className="mt-3 text-4xl font-black text-[#8B1538]" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Explore Our Menu
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[#5A4A4E]">
-              Discover the full range of cafe offerings, from refreshing drinks to filling mains and crowd-favorite comfort plates.
-            </p>
-          </div>
-
-          <div className="mt- grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {categories.map((category) => {
-              const catKey = (category.name || '').toUpperCase();
-              const imgSrc =
-                CATEGORY_IMAGE_MAP[catKey] ||
-                CATEGORY_IMAGE_MAP[catKey + 'S'] ||
-                CATEGORY_IMAGE_MAP[catKey.replace(/S$/, '')] ||
-                '/home_html/images/categories/BEVERAGES.jpg';
-
-              return (
-                <button
-                  key={category.name}
-                  type="button"
-                  onClick={() => navigate('/menu', { state: { category: category.name } })}
-                  className="group overflow-hidden rounded-[26px] border border-[#E9D4C0] bg-white p-4 text-center shadow-[0_18px_45px_rgba(81,43,50,0.07)] transition-transform hover:-translate-y-1"
-                  data-testid={`category-${category.name.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-[3px] border-[#D6A64A] shadow-[0_12px_30px_rgba(81,43,50,0.12)]">
-                    <img
-                      src={imgSrc}
-                      alt={category.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-base font-bold text-[#2D1B1E]">{formatCategoryName(category.name)}</h3>
-                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[#8B1538]">{category.count} items</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <CompleteMenuSection navigate={navigate} />
+     <HeroSection/>
+<HeritageAbout/>
+     <HeritageCategories categories={categories} />
+      <HeritageMenuSection/>
 
 
 
       {SPECIAL_DISHES.length > 0 && (
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
+  <section className="bg-[#FFFBF2] px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
+    {/* Background Watermark Motif */}
+    <div className="absolute top-10 left-0 w-64 h-64 opacity-[0.03] pointer-events-none">
+      <svg viewBox="0 0 100 100" fill="#8B1538"><path d="M50 0 L100 50 L50 100 L0 50 Z" /></svg>
+    </div>
 
-            {/* Heading */}
-            <div className="mb-10">
-              <h2 className="text-3xl font-bold text-[#1C1C1C] md:text-4xl">
-                What&apos;s on your mind?
-              </h2>
-              <p className="mt-2 text-gray-500">
-                Explore our popular cafe categories and special dishes
-              </p>
-            </div>
+    <div className="mx-auto max-w-7xl relative z-10">
 
-            {/* Category Icons UI */}
-            <div className="mb-14 overflow-x-auto pb-4 scrollbar-hide">
-              <div className="grid min-w-[900px] grid-cols-6 gap-x-10 gap-y-8">
-                {SPECIAL_DISHES.map((item) => (
-                  <button
-                    key={item.name}
-                    type="button"
-                    className="group flex flex-col items-center text-center"
-                  >
-                    <div className="h-28 w-28 overflow-hidden rounded-full bg-[#F8F7F5] shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-
-                    <h3 className="mt-3 text-lg font-medium text-[#3D3D3D]">
-                      {item.name}
-                    </h3>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Product Detail Cards */}
-            <div className="mb-8 flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-[#1C1C1C]">
-                  Recommended for you
-                </h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Best dishes from Sangameshwar Cafe
-                </p>
-              </div>
-
-              <button
-                onClick={() => navigate("/menu")}
-                className="rounded-full bg-[#8B1538] px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                View All
-              </button>
-            </div>
-
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 p-4">
-              {SPECIAL_DISHES.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex flex-col bg-transparent"
-                >
-                  {/* Improved Image Container: Aspect ratio 4:3 for better framing */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[24px] bg-[#F9F9F9]">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      /* Removed 'h-full' and 'object-cover' to prevent zooming. 
-                         Using 'object-contain' or careful 'p-4' ensures the whole plate shows. */
-                      className="h-full w-full object-cover p-0"
-                    />
-
-                    {/* Sleek Overlays */}
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/40 to-transparent" />
-
-                    {/* Badge: Best Seller */}
-                    <div className="absolute left-4 top-4">
-                      <span className="rounded-md bg-[#8B1538] px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">
-                        Best Seller
-                      </span>
-                    </div>
-
-                    {/* Rating & Delivery Info Overlay */}
-                    <div className="absolute bottom-4 left-4 flex items-center gap-3 text-white">
-                      <div className="flex items-center gap-1">
-                        <span className="flex items-center justify-center rounded-full bg-[#24963F] p-1 shadow-sm">
-                          <svg className="h-2 w-2 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        </span>
-                        <span className="text-sm font-bold">4.3</span>
-                      </div>
-                      <span className="text-xs font-medium opacity-90 border-l border-white/30 pl-3">25 MINS</span>
-                    </div>
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="mt-5 px-1">
-                    <div className="flex items-start justify-between">
-                      <div className="flex flex-col gap-1">
-                        <h3 className="text-[19px] font-bold text-gray-900 leading-tight">
-                          {item.name}
-                        </h3>
-                        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
-                          Cafe Special • Fresh
-                        </p>
-                      </div>
-                      <p className="text-xl font-bold text-gray-900">
-                        ₹{item.price}
-                      </p>
-                    </div>
-
-                    <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-gray-500 font-medium">
-                      {item.description}
-                    </p>
-
-                    {/* Minimal Footer */}
-                    <div className="mt-6 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
-                        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">Prepared Daily</span>
-                      </div>
-
-                      <button className="flex items-center justify-center gap-2 rounded-xl border-2 border-gray-100 px-6 py-2 text-[13px] font-black text-[#8B1538] hover:bg-gray-50 hover:border-gray-200 active:scale-95 transition-all">
-                        ADD
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-      )}
-
-      <section className="relative overflow-hidden bg-white py-16 lg:py-24" data-testid="reservation-section">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-
-            {/* Left Side: Clean Form */}
-            <div className="relative order-2 lg:order-1">
-              <div className="max-w-xl">
-                <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#8B1538]">
-                  <span className="h-px w-8 bg-[#8B1538]"></span>
-                  Online Reservation
-                </span>
-                <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#1A1516] sm:text-5xl">
-                  Book A Table
-                </h2>
-                <p className="mt-6 text-base leading-relaxed text-[#6D6163]">
-                  Reserve your next cafe visit for family breakfast, evening snacks, or a relaxed dining session.
-                </p>
-
-                <form
-                  className="mt-10 space-y-6"
-                  onSubmit={(e) => { e.preventDefault(); navigate('/contact'); }}
-                >
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <div className="group space-y-2">
-                      <label className="ml-1 text-[11px] font-bold uppercase tracking-wider text-[#9A8F8F] group-focus-within:text-[#8B1538]">Full Name</label>
-                      <input
-                        type="text"
-                        placeholder="John Doe"
-                        className="w-full rounded-2xl border border-[#F0EBE6] bg-[#F9F8F7] px-5 py-4 text-sm text-[#2D1B1E] transition-all focus:border-[#8B1538] focus:bg-white focus:ring-4 focus:ring-[#8B1538]/5 outline-none"
-                      />
-                    </div>
-                    <div className="group space-y-2">
-                      <label className="ml-1 text-[11px] font-bold uppercase tracking-wider text-[#9A8F8F] group-focus-within:text-[#8B1538]">Phone Number</label>
-                      <input
-                        type="tel"
-                        placeholder="+91 99999 00000"
-                        className="w-full rounded-2xl border border-[#F0EBE6] bg-[#F9F8F7] px-5 py-4 text-sm text-[#2D1B1E] transition-all focus:border-[#8B1538] focus:bg-white focus:ring-4 focus:ring-[#8B1538]/5 outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid gap-6 md:grid-cols-2">
-                    <div className="group space-y-2">
-                      <label className="ml-1 text-[11px] font-bold uppercase tracking-wider text-[#9A8F8F] group-focus-within:text-[#8B1538]">Date</label>
-                      <input
-                        type="date"
-                        className="w-full rounded-2xl border border-[#F0EBE6] bg-[#F9F8F7] px-5 py-4 text-sm text-[#2D1B1E] transition-all focus:border-[#8B1538] focus:bg-white outline-none"
-                      />
-                    </div>
-                    <div className="group space-y-2">
-                      <label className="ml-1 text-[11px] font-bold uppercase tracking-wider text-[#9A8F8F] group-focus-within:text-[#8B1538]">Time Slot</label>
-                      <input
-                        type="time"
-                        className="w-full rounded-2xl border border-[#F0EBE6] bg-[#F9F8F7] px-5 py-4 text-sm text-[#2D1B1E] transition-all focus:border-[#8B1538] focus:bg-white outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-[#8B1538] py-5 text-[13px] font-bold uppercase tracking-widest text-white shadow-xl shadow-[#8B1538]/20 transition-all hover:bg-[#72112e] hover:shadow-2xl hover:shadow-[#8B1538]/30 active:scale-[0.98]"
-                  >
-                    Reserve Now
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            {/* Right Side: Clean Image & Visit Card */}
-            <div className="relative order-1 lg:order-2">
-              <div className="relative overflow-hidden rounded-[48px] bg-[#F9F8F7] p-4 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)]">
-                <img
-                  src="/home_html/images/restaurant.jpg"
-                  alt="Ambiance"
-                  className="h-[450px] w-full rounded-[36px] object-cover"
-                />
-
-                <div className="mt-8 px-4 pb-4">
-                  <div className="flex items-start justify-between border-b border-[#F0EBE6] pb-6">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8B1538]">Location</p>
-                      <p className="mt-2 text-sm font-medium leading-relaxed text-[#6D6163]">
-                        Magic Business Hub, near VIIT College,<br /> Kondhwa Budruk, Pune
-                      </p>
-                    </div>
-                    <div className="hidden sm:block">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#8B1538]/5 text-[#8B1538]">
-                        <MapPin size={22} />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex gap-12">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8B1538]">Lunch</p>
-                      <p className="mt-1 text-sm font-bold text-[#1A1516]">10:00 - 15:30</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8B1538]">Dinner</p>
-                      <p className="mt-1 text-sm font-bold text-[#1A1516]">20:00 - 22:30</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+      {/* --- SECTION 1: ROYAL CATEGORIES --- */}
+      <div className="mb-14 text-center">
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="h-[1px] w-10 bg-[#D6A64A]" />
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#8B1538]">The Imperial Selection</span>
+          <div className="h-[1px] w-10 bg-[#D6A64A]" />
         </div>
-      </section>
+        <h2 className="text-4xl font-bold text-[#1a1a1a] md:text-5xl font-serif">
+          What Shall We <span className="italic text-[#8B1538]">Prepare</span> For You?
+        </h2>
+      </div>
+
+      <div className="mb-20 overflow-x-auto pb-8 no-scrollbar">
+        <div className="flex min-w-max justify-center gap-x-12 px-4">
+          {SPECIAL_DISHES.map((item) => (
+            <button
+              key={item.name}
+              type="button"
+              className="group flex flex-col items-center text-center"
+            >
+              <div className="relative">
+                {/* Rotating Border Effect */}
+                <div className="absolute inset-[-6px] border border-dashed border-[#D6A64A]/40 rounded-full transition-transform duration-1000 group-hover:rotate-180" />
+                
+                <div className="h-28 w-28 md:h-32 md:w-32 overflow-hidden rounded-full border-4 border-[#D6A64A] bg-white shadow-xl transition-all duration-500 group-hover:scale-105">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+              </div>
+
+              <h3 className="mt-6 text-sm font-bold uppercase tracking-widest text-[#2A2022] group-hover:text-[#8B1538] transition-colors">
+                {item.name}
+              </h3>
+              <div className="mt-2 h-[1px] w-4 bg-[#D6A64A] group-hover:w-10 transition-all" />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* --- SECTION 2: RECOMMENDED CARDS --- */}
+      <div className="mb-12 flex items-end justify-between border-b border-[#D6A64A]/20 pb-8">
+        <div>
+          <h3 className="text-3xl font-bold text-[#1a1a1a] font-serif">
+            Chef's <span className="italic text-[#D6A64A]">Masterpieces</span>
+          </h3>
+          <p className="mt-2 text-sm text-gray-500 font-serif italic">
+            Handpicked signature delicacies from the house of Sangameshwar
+          </p>
+        </div>
+
+        <button
+          onClick={() => navigate("/menu")}
+          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8B1538] hover:text-[#D6A64A] transition-colors"
+        >
+          View Full Scroll
+          <div className="h-[1px] w-8 bg-[#8B1538] group-hover:w-12 transition-all" />
+        </button>
+      </div>
+
+      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        {SPECIAL_DISHES.map((item) => (
+          <div
+            key={item.name}
+            className="group flex flex-col bg-transparent"
+          >
+            {/* Jharokha Style Image Container */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full border-[6px] border-[#D6A64A]/20 bg-white transition-all duration-500 group-hover:border-[#D6A64A]/50">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 via-transparent to-transparent opacity-80" />
+
+              {/* Royal Badge */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-6">
+                <span className="rounded-full bg-[#8B1538] border border-[#D6A64A] px-4 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#F5D38B] shadow-2xl">
+                  House Special
+                </span>
+              </div>
+
+              {/* Bottom Info Overlay */}
+              <div className="absolute bottom-6 left-0 right-0 px-6 flex items-center justify-between text-white">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#24963F] border border-white/20">
+                    <span className="text-[10px] font-bold">4.3</span>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-tighter opacity-80">Rating</span>
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest py-1 px-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                    25 MINS
+                </span>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="mt-8 text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <h3 className="text-2xl font-serif font-bold text-[#1a1a1a] tracking-tight group-hover:text-[#8B1538] transition-colors">
+                  {item.name}
+                </h3>
+                <p className="text-2xl font-serif font-bold text-[#8B1538]">
+                  ₹{item.price}
+                </p>
+              </div>
+
+              <p className="line-clamp-2 font-serif text-[15px] leading-relaxed text-gray-600 italic">
+                {item.description || "Experience the authentic rich flavors of Sangameshwar, prepared using traditional royal recipes."}
+              </p>
+
+              {/* Heritage Style Action Button */}
+              <div className="mt-8 pt-6 border-t border-[#D6A64A]/10 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 border border-green-600 p-[2px] flex items-center justify-center">
+                    <div className="h-full w-full bg-green-600 rounded-full" />
+                  </div>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pure Traditional</span>
+                </div>
+
+                <button className="relative px-8 py-3 bg-[#8B1538] text-[#F5D38B] text-[11px] font-bold rounded-sm border border-[#D6A64A] transition-all duration-300 hover:bg-[#1a1a1a] shadow-xl transform active:scale-95">
+                  ADD TO FEAST
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+)}
+
+      <HeritageReservation/>
 
       <section className="relative overflow-hidden bg-[#FDFCFB] py-20 lg:py-28" data-testid="chef-section">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
