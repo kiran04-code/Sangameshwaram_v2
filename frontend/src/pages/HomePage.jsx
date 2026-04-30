@@ -35,6 +35,7 @@ import HeritageAbout from './HotelAboutSection';
 import HeritageCategories from './HeritageCategories';
 import HeritageMenuSection from './HeritageMenu';
 import HeritageReservation from './HeritageReservation';
+import HeritageChefSection from './HeritageChefSection';
 const CATEGORY_IMAGE_MAP = {
   BEVERAGES: '/home_html/images/categories/BEVERAGES.jpg',
   MILKSHAKE: '/home_html/images/categories/MILKSHAKE.jpg',
@@ -720,101 +721,7 @@ const HomePage = () => {
 
       <HeritageReservation/>
 
-      <section className="relative overflow-hidden bg-[#FDFCFB] py-20 lg:py-28" data-testid="chef-section">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-
-            {/* Left Side: Content */}
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-3 rounded-full bg-[#8B1538]/5 px-4 py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#8B1538] animate-pulse" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8B1538]">
-                  Meet The Master Chef
-                </span>
-              </div>
-
-              <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-[#1A1516] sm:text-6xl">
-                Crafted With Care, <br />
-                <span className="text-[#8B1538]">Served With Identity</span>
-              </h2>
-
-              <p className="mt-6 text-lg leading-relaxed text-[#6D6163]">
-                Every plate is built to feel familiar, satisfying, and worth returning for. We focus on balanced flavor and dependable quality.
-              </p>
-
-              <div className="mt-10 space-y-6">
-                {[
-                  { icon: <ChefHat size={20} />, text: "Menu shaped for ultimate comfort and hearty mains." },
-                  { icon: <Sparkles size={20} />, text: "Premium visual presentation in every single detail." },
-                  { icon: <Award size={20} />, text: "Unmatched consistency and neighborhood warmth." }
-                ].map((feature, i) => (
-                  <div key={i} className="group flex items-center gap-4 rounded-2xl border border-transparent bg-white p-4 transition-all hover:border-[#8B1538]/10 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)]">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#8B1538]/10 text-[#8B1538] group-hover:bg-[#8B1538] group-hover:text-white transition-colors">
-                      {feature.icon}
-                    </div>
-                    <p className="text-sm font-medium text-[#645355] leading-snug">{feature.text}</p>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => navigate('/about')}
-                className="mt-10 flex items-center gap-3 rounded-full bg-[#1A1516] px-8 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-2xl shadow-black/20 transition-all hover:bg-[#8B1538] hover:-translate-y-1 active:scale-95"
-              >
-                Discover Our Story
-                <ArrowRight size={18} />
-              </button>
-            </div>
-
-            {/* Right Side: Modern Lifestyle Collage */}
-            <div className="relative">
-              <div className="grid grid-cols-12 gap-4">
-                {/* Main Large Image */}
-                <div className="col-span-8 overflow-hidden rounded-[60px_20px_60px_20px] shadow-2xl">
-                  <img
-                    src="/home_html/images/mainchef1.jpg"
-                    alt="Chef"
-                    className="h-[500px] w-full object-cover transition-transform duration-700 hover:scale-110"
-                  />
-                </div>
-
-                {/* Two Smaller Images Stacked */}
-                <div className="col-span-4 flex flex-col gap-4">
-                  <div className="h-1/2 overflow-hidden rounded-[20px_60px_20px_60px] shadow-xl">
-                    <img
-                      src="/home_html/images/mainchef2.jpg"
-                      alt="Cooking"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="h-1/2 overflow-hidden rounded-[20px_20px_60px_20px] shadow-xl">
-                    <img
-                      src="/home_html/images/mainchef3.jpg"
-                      alt="Kitchen"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Stat Card */}
-              <div className="absolute -bottom-6 -left-6 rounded-3xl bg-white p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] md:p-8">
-                <div className="flex items-center gap-4">
-                  <div className="text-4xl font-black text-[#8B1538]">10+</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#6D6163] leading-tight">
-                    Years of <br /> Culinary <br /> Excellence
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative Element */}
-              <div className="absolute -right-4 -top-4 -z-10 h-32 w-32 rounded-full bg-[#F3C316]/10 blur-3xl" />
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <HeritageChefSection/>
       <HotelGallery/>
       <Testimonials/>
       <footer className="relative overflow-hidden bg-[#9F1A42] px-4 pt-20 pb-10 text-white" data-testid="footer">
