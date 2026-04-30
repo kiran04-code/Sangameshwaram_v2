@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Search, ChevronRight, Utensils } from 'lucide-react';
+import { MapPin, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
@@ -17,13 +17,18 @@ const HeroSection = () => {
           loop
           muted
           playsInline
-          className="h-full w-full object-cover opacity-40"
+          className="h-full w-full object-cover opacity-50"
         >
-          {/* Use a high-quality stock video of steam, pouring tea, or slow-motion cooking */}
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-slow-motion-of-a-steam-rising-from-a-hot-dish-43332-large.mp4" type="video/mp4" />
+          {/* Dummy video: High-quality slow motion tea/steam */}
+          <source 
+            src="https://assets.mixkit.co/videos/preview/mixkit-coffee-maker-filling-a-cup-in-slow-motion-14115-large.mp4" 
+            type="video/mp4" 
+          />
         </video>
-        {/* Deep Maroon Gradient Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#8B1538]/80 via-[#2A0B14]/90 to-[#2A0B14]" />
+        
+        {/* Dual-tone overlay: Darkening the video for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2A0B14]/80 via-[#2A0B14]/60 to-[#2A0B14]" />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* --- TRADITIONAL ORNAMENTAL BORDERS --- */}
@@ -53,7 +58,7 @@ const HeroSection = () => {
             Served with <span className="font-light italic">Honor</span>.
           </h1>
 
-          <p className="mt-8 max-w-2xl font-serif text-lg leading-relaxed text-[#FFF0D7]/70 sm:text-xl">
+          <p className="mt-8 max-w-2xl font-serif text-lg leading-relaxed text-[#FFF0D7]/80 sm:text-xl">
             Experience the finest breakfast, hearty mains, and refreshing drinks in Pune’s most beloved 
             traditional cafe setting.
           </p>
@@ -115,7 +120,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom Flourish */}
+      {/* Bottom Wave Decor */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
         <svg className="relative block h-[60px] w-full" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,13.47V0Z" className="fill-[#FFF0D7]"></path>
