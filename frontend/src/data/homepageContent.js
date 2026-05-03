@@ -13,3 +13,7 @@ export const HOME_SECTION_IDS = {
   home: 'home',
   about: 'about',
 };
+
+export const HOME_SECTION_SENTINELS = {
+  heroEnd: 'home-hero-end',
+};

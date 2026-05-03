@@ -18,8 +18,11 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import BottomNavigation from './components/BottomNavigation';
 import { CartProvider } from './context/CartContext';
 import { AdminProvider } from './context/AdminContext';
+import useLenisScroll from './hooks/useLenisScroll';
 
 function App() {
+  useLenisScroll();
+
   return (
     <AdminProvider>
       <CartProvider>

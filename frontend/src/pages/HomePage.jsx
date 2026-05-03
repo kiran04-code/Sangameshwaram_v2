@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from '../components/Header';
 import {
   ChevronRight,
@@ -23,10 +23,6 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-import { motion } from 'framer-motion';
 import HotelGallery from './HotelGallery';
 import Testimonials from './Testimonials';
 import HotelAboutSection from './HotelAboutSection';
@@ -35,6 +31,10 @@ import HeritageMenuSection from './HeritageMenu';
 import HeritageReservation from './HeritageReservation';
 import HeritageChefSection from './HeritageChefSection';
 import HomeHeroSection from './HomeHeroSection';
+import SpecialDishesSection from '../components/SpecialDishesSection';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 const CATEGORY_IMAGE_MAP = {
   BEVERAGES: '/home_html/images/categories/BEVERAGES.jpg',
   MILKSHAKE: '/home_html/images/categories/MILKSHAKE.jpg',
@@ -566,145 +566,87 @@ const HomePage = () => {
       <HomeHeroSection />
       <HotelAboutSection />
       <HeritageCategories categories={categories} />
-      <HeritageMenuSection/>
+      <HeritageMenuSection />
+      <SpecialDishesSection dishes={SPECIAL_DISHES} />
+ {false && (
+  <section className="relative overflow-hidden  px-4 py-24 sm:px-6 lg:px-8">
+    <div className="pointer-events-none absolute -left-24 top-20 h-72 w-72 rounded-full bg-[#D6A64A]/10 blur-3xl" />
+    <div className="pointer-events-none absolute -right-24 bottom-20 h-72 w-72 rounded-full bg-[#8B1538]/10 blur-3xl" />
 
+    <div className="relative z-10 mx-auto max-w-7xl">
+      {/* Header */}
+      <div className="mx-auto mb-16 max-w-3xl text-center">
+        <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.45em] text-[#8B1538]">
+          Sangameshwar Specials
+        </p>
 
-
-      {SPECIAL_DISHES.length > 0 && (
-  <section className="bg-[#FFFBF2] px-4 py-20 sm:px-6 lg:px-8 relative overflow-hidden">
-    {/* Background Watermark Motif */}
-    <div className="absolute top-10 left-0 w-64 h-64 opacity-[0.03] pointer-events-none">
-      <svg viewBox="0 0 100 100" fill="#8B1538"><path d="M50 0 L100 50 L50 100 L0 50 Z" /></svg>
-    </div>
-
-    <div className="mx-auto max-w-7xl relative z-10">
-
-      {/* --- SECTION 1: ROYAL CATEGORIES --- */}
-      <div className="mb-14 text-center">
-        <div className="flex items-center justify-center gap-4 mb-3">
-          <div className="h-[1px] w-10 bg-[#D6A64A]" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#8B1538]">The Imperial Selection</span>
-          <div className="h-[1px] w-10 bg-[#D6A64A]" />
-        </div>
-        <h2 className="text-4xl font-bold text-[#1a1a1a] md:text-5xl font-serif">
-          What Shall We <span className="italic text-[#8B1538]">Prepare</span> For You?
-        </h2>
-      </div>
-
-      <div className="mb-20 overflow-x-auto pb-8 no-scrollbar">
-        <div className="flex min-w-max justify-center gap-x-12 px-4">
-          {SPECIAL_DISHES.map((item) => (
-            <button
-              key={item.name}
-              type="button"
-              className="group flex flex-col items-center text-center"
-            >
-              <div className="relative">
-                {/* Rotating Border Effect */}
-                <div className="absolute inset-[-6px] border border-dashed border-[#D6A64A]/40 rounded-full transition-transform duration-1000 group-hover:rotate-180" />
-                
-                <div className="h-28 w-28 md:h-32 md:w-32 overflow-hidden rounded-full border-4 border-[#D6A64A] bg-white shadow-xl transition-all duration-500 group-hover:scale-105">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-              </div>
-
-              <h3 className="mt-6 text-sm font-bold uppercase tracking-widest text-[#2A2022] group-hover:text-[#8B1538] transition-colors">
-                {item.name}
-              </h3>
-              <div className="mt-2 h-[1px] w-4 bg-[#D6A64A] group-hover:w-10 transition-all" />
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* --- SECTION 2: RECOMMENDED CARDS --- */}
-      <div className="mb-12 flex items-end justify-between border-b border-[#D6A64A]/20 pb-8">
-        <div>
-          <h3 className="text-3xl font-bold text-[#1a1a1a] font-serif">
-            Chef's <span className="italic text-[#D6A64A]">Masterpieces</span>
-          </h3>
-          <p className="mt-2 text-sm text-gray-500 font-serif italic">
-            Handpicked signature delicacies from the house of Sangameshwar
-          </p>
-        </div>
-
-        <button
-          onClick={() => navigate("/menu")}
-          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8B1538] hover:text-[#D6A64A] transition-colors"
+        <h2
+          style={{ fontFamily: "Cormorant Garamond, serif" }}
+          className="text-4xl font-light leading-tight text-[#241719] md:text-6xl"
         >
-          View Full Scroll
-          <div className="h-[1px] w-8 bg-[#8B1538] group-hover:w-12 transition-all" />
-        </button>
+          Crafted Plates,{" "}
+          <span className="italic text-[#D6A64A]">Timeless</span> Taste
+        </h2>
+
+        <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-gray-500">
+          Explore our most loved dishes prepared with fresh ingredients,
+          traditional spices, and homely warmth.
+        </p>
       </div>
 
-      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        {SPECIAL_DISHES.map((item) => (
+      {/* Multiple Products */}
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {SPECIAL_DISHES.map((item, index) => (
           <div
             key={item.name}
-            className="group flex flex-col bg-transparent"
+            className={`group relative rounded-[2rem] bg-white p-4 shadow-[0_25px_70px_rgba(0,0,0,0.06)] transition duration-500 hover:-translate-y-2 ${
+              index % 2 === 1 ? "lg:mt-14" : ""
+            }`}
           >
-            {/* Jharokha Style Image Container */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full border-[6px] border-[#D6A64A]/20 bg-white transition-all duration-500 group-hover:border-[#D6A64A]/50">
+            {/* Image */}
+            <div className="relative overflow-hidden rounded-[1.6rem] bg-[#F8F4ED]">
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
               />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/60 via-transparent to-transparent opacity-80" />
-
-              {/* Royal Badge */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-6">
-                <span className="rounded-full bg-[#8B1538] border border-[#D6A64A] px-4 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#F5D38B] shadow-2xl">
-                  House Special
-                </span>
+              <div className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-[#8B1538] shadow">
+                House Special
               </div>
 
-              {/* Bottom Info Overlay */}
-              <div className="absolute bottom-6 left-0 right-0 px-6 flex items-center justify-between text-white">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#24963F] border border-white/20">
-                    <span className="text-[10px] font-bold">4.3</span>
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-tighter opacity-80">Rating</span>
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-widest py-1 px-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-                    25 MINS
-                </span>
+              <div className="absolute bottom-4 right-4 rounded-full bg-[#241719] px-4 py-2 text-sm font-bold text-[#F5D38B] shadow">
+                ₹{item.price}
               </div>
             </div>
 
-            {/* Content Section */}
-            <div className="mt-8 text-center sm:text-left">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                <h3 className="text-2xl font-serif font-bold text-[#1a1a1a] tracking-tight group-hover:text-[#8B1538] transition-colors">
+            {/* Content */}
+            <div className="px-2 pb-2 pt-7">
+              <div className="mb-3 flex items-start justify-between gap-4">
+                <h3
+                  style={{ fontFamily: "Cormorant Garamond, serif" }}
+                  className="text-3xl font-semibold leading-none text-[#241719]"
+                >
                   {item.name}
                 </h3>
-                <p className="text-2xl font-serif font-bold text-[#8B1538]">
-                  ₹{item.price}
-                </p>
+
+                <span className="mt-1 rounded-full border border-[#D6A64A]/40 px-3 py-1 text-[10px] font-bold text-[#8B1538]">
+                  4.3 ★
+                </span>
               </div>
 
-              <p className="line-clamp-2 font-serif text-[15px] leading-relaxed text-gray-600 italic">
-                {item.description || "Experience the authentic rich flavors of Sangameshwar, prepared using traditional royal recipes."}
+              <p className="line-clamp-2 text-sm leading-6 text-gray-500">
+                {item.description ||
+                  "A rich traditional delicacy prepared with authentic Indian spices and fresh ingredients."}
               </p>
 
-              {/* Heritage Style Action Button */}
-              <div className="mt-8 pt-6 border-t border-[#D6A64A]/10 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 border border-green-600 p-[2px] flex items-center justify-center">
-                    <div className="h-full w-full bg-green-600 rounded-full" />
-                  </div>
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pure Traditional</span>
-                </div>
+              <div className="mt-7 flex items-center justify-between border-t border-[#D6A64A]/20 pt-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">
+                  25 mins
+                </p>
 
-                <button className="relative px-8 py-3 bg-[#8B1538] text-[#F5D38B] text-[11px] font-bold rounded-sm border border-[#D6A64A] transition-all duration-300 hover:bg-[#1a1a1a] shadow-xl transform active:scale-95">
-                  ADD TO FEAST
+                <button className="rounded-full bg-[#8B1538] px-6 py-3 text-[11px] font-bold uppercase tracking-widest text-white transition hover:bg-[#241719]">
+                  Add Item
                 </button>
               </div>
             </div>
@@ -712,12 +654,20 @@ const HomePage = () => {
         ))}
       </div>
 
+      {/* View All */}
+      <div className="mt-16 text-center">
+        <button
+          onClick={() => navigate("/menu")}
+          className="rounded-full border border-[#8B1538]/20 bg-white px-8 py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-[#8B1538] shadow-sm transition hover:bg-[#8B1538] hover:text-white"
+        >
+          View Full Menu
+        </button>
+      </div>
     </div>
   </section>
 )}
 
       <HeritageReservation/>
-
       <HeritageChefSection/>
       <HotelGallery/>
       <Testimonials/>

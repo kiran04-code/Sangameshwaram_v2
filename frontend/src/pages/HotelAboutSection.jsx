@@ -1,9 +1,6 @@
 import React, { useRef, useLayoutEffect } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const foodItems = [
   {
@@ -28,28 +25,61 @@ const HotelAboutSection = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-      });
+      const revealItems = gsap.utils.toArray(".reveal-item", sectionRef.current);
+      const observerTarget = sectionRef.current;
 
-      tl.from(".reveal-item", {
+      gsap.set(revealItems, {
         opacity: 0,
         y: 30,
+      });
+
+      gsap.set(personImgRef.current, {
+        opacity: 0,
+        x: 40,
+      });
+
+      const tl = gsap.timeline({
+        paused: true,
+      });
+
+      tl.to(revealItems, {
+        opacity: 1,
+        y: 0,
         duration: 1,
         stagger: 0.1,
         ease: "expo.out",
       })
-        .from(personImgRef.current, {
-          opacity: 0,
-          x: 40,
+        .to(personImgRef.current, {
+          opacity: 1,
+          x: 0,
           duration: 1.2,
-          ease: "power3.out"
+          ease: "power3.out",
         }, "-=0.8");
 
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          tl.play();
+          observer.disconnect();
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "0px 0px -10% 0px",
+        }
+      );
+
+      if (observerTarget) {
+        observer.observe(observerTarget);
+      }
+
+      return () => {
+        observer.disconnect();
+      };
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
@@ -119,10 +149,10 @@ const HotelAboutSection = () => {
                 style={{ fontFamily: "Cormorant Garamond, serif" }}
                 className="text-[34px] md:text-[42px] italic leading-tight text-[#8d1238]"
               >
-                “Serving tradition with every smile.”
+                "Serving tradition with every smile."
               </p>
               <p className="mt-6 text-[15px] leading-relaxed text-gray-400 font-light max-w-xs">
-                Every dish reflects heritage, taste, and warmth—bringing the essence of North India to your plate.
+                Every dish reflects heritage, taste, and warmth, bringing the essence of North India to your plate.
               </p>
             </div>
 

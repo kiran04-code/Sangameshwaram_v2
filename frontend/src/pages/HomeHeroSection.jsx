@@ -1,6 +1,10 @@
 import React, { useRef, useLayoutEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import { HERO_CONTENT, HOME_SECTION_IDS } from "../data/homepageContent";
+import {
+  HERO_CONTENT,
+  HOME_SECTION_IDS,
+  HOME_SECTION_SENTINELS,
+} from "../data/homepageContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -164,6 +168,11 @@ const HomeHeroSection = () => {
   const handleScroll = () => {
     const nextSection = document.getElementById(HOME_SECTION_IDS.about);
     if (nextSection) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(nextSection, { offset: 0 });
+        return;
+      }
+
       window.scrollTo({
         top: nextSection.offsetTop,
         behavior: "smooth",
@@ -266,6 +275,12 @@ const HomeHeroSection = () => {
       >
         <ChevronDown size={34} strokeWidth={1.4} />
       </button>
+
+      <div
+        id={HOME_SECTION_SENTINELS.heroEnd}
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 h-px w-full"
+      />
     </section>
   );
 };

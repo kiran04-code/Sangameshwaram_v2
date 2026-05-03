@@ -1,112 +1,108 @@
 import React from "react";
-import { ChefHat, Sparkles, Award, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HeritageChefSection = ({ navigate }) => {
   return (
-    <section className="relative overflow-hidden bg-[#FFFBF2] py-24 lg:py-32" data-testid="chef-section">
-      {/* Decorative Mandala Background Watermark */}
-      <div className="absolute left-[-10%] top-[-10%] w-[40%] aspect-square opacity-[0.03] pointer-events-none rotate-12">
-        <svg viewBox="0 0 100 100" fill="#8B1538">
-          <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z" />
-        </svg>
-      </div>
-
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="grid items-center gap-20 lg:grid-cols-2">
-
-          {/* Left Side: Imperial Content */}
-          <div className="relative">
+    <section className="relative bg-[#FAF7F2] py-24 lg:py-32 overflow-hidden">
+      {/* Soft minimalist background - Straight edges */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F3EAD3]/30" />
+      
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
+          
+          {/* --- LEFT CONTENT: MINIMALIST TEXT --- */}
+          <div className="max-w-xl">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-[1px] w-12 bg-[#D6A64A]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#8B1538]">
-                The Royal Khansama
+              <span className="h-px w-8 bg-[#8B1538]" />
+              <span
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+                className="text-[28px] italic leading-none text-[#5f6476] md:text-[34px]"
+              >
+                Authentic Craft
               </span>
             </div>
 
-            <h2 className="text-4xl font-bold tracking-tight text-[#1A1516] sm:text-7xl font-serif leading-[1.1]">
-              Crafted With Soul, <br />
-              <span className="italic text-[#8B1538] font-serif">Served With Legacy</span>
+            <h2 className="font-serif text-5xl lg:text-6xl leading-[1.1] text-[#1A1516]">
+              Food made <span className="text-[#8B1538]">slowly,</span>
+              <span className="block mt-2">served with heart.</span>
             </h2>
 
-            <p className="mt-8 text-lg font-serif italic leading-relaxed text-[#6D6163]">
-              "In the palace of Sangameshwar, cooking is not just an art—it is a sacred tradition passed down through generations of master culinary craftsmen."
+            <p className="mt-8 text-base leading-relaxed text-[#5C5452] font-light">
+              We believe in the luxury of patience. Every recipe is a slow-cooked 
+              tribute to Indian heritage, using hand-ground spices and 
+              time-honored techniques passed through generations.
             </p>
 
-            <div className="mt-12 space-y-4">
+            {/* Refined minimalist stats */}
+            <div className="mt-12 flex flex-wrap gap-10 border-t border-black/5 pt-10">
               {[
-                { icon: <ChefHat size={18} />, text: "Traditional recipes curated for the modern connoisseur." },
-                { icon: <Sparkles size={18} />, text: "Ingredients sourced from the heart of local harvest." },
-                { icon: <Award size={18} />, text: "A decade of upholding imperial standards of taste." }
-              ].map((feature, i) => (
-                <div key={i} className="group flex items-center gap-6 p-4 border-l-2 border-[#D6A64A]/20 transition-all hover:border-[#8B1538] hover:bg-white/50">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#D6A64A] text-[#8B1538] group-hover:bg-[#8B1538] group-hover:text-[#F5D38B] transition-all duration-500">
-                    {feature.icon}
-                  </div>
-                  <p className="text-sm font-bold uppercase tracking-widest text-[#2A2022] opacity-80">{feature.text}</p>
+                { label: "Spices", val: "Hand-Picked" },
+                { label: "Process", val: "Traditional" },
+                { label: "Taste", val: "Homely" }
+              ].map((item) => (
+                <div key={item.label}>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-[#8B1538]/60 mb-1">
+                    {item.label}
+                  </p>
+                  <p className="font-serif text-lg text-[#1A1516]">{item.val}</p>
                 </div>
               ))}
             </div>
 
             <button
-              type="button"
-              onClick={() => navigate('/about')}
-              className="mt-12 group relative inline-flex items-center gap-4 bg-[#8B1538] px-10 py-5 text-[12px] font-bold uppercase tracking-[0.3em] text-[#F5D38B] transition-all hover:bg-[#1A1516] border border-[#D6A64A]/30 shadow-2xl"
+              onClick={() => navigate("/about")}
+              className="group mt-12 flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.3em] text-[#1A1516]"
             >
-              Our Imperial Story
-              <ArrowRight size={18} className="transition-transform group-hover:translate-x-2" />
-              <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-[#F5D38B]/40" />
-              <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-[#F5D38B]/40" />
+              <span className="relative">
+                Our Heritage Story
+                <span className="absolute -bottom-2 left-0 h-px w-full bg-[#8B1538] origin-right scale-x-0 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
+              </span>
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-2" />
             </button>
           </div>
 
-          {/* Right Side: The Heritage Triptych (Arched Gallery) */}
+          {/* --- RIGHT CONTENT: SHARP MASONRY GALLERY --- */}
           <div className="relative">
-            <div className="grid grid-cols-12 gap-4 items-end">
-              {/* Main Large Portrait (Jharokha Style) */}
-              <div className="col-span-7 relative">
-                <div className="overflow-hidden rounded-t-full border-[8px] border-white shadow-2xl">
+            <div className="flex gap-6 items-start">
+              
+              {/* Main Vertical Image - Zero Radius */}
+              <div className="relative w-3/5 overflow-hidden shadow-2xl">
+                <div className="aspect-[3/4.5]">
                   <img
                     src="/home_html/images/mainchef1.jpg"
-                    alt="Master Chef"
-                    className="h-[550px] w-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-1000"
+                    alt="Chef Crafting"
+                    className="h-full w-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
                   />
                 </div>
-                {/* Gold Frame Corner Accent */}
-                <div className="absolute -top-4 -left-4 w-20 h-20 border-t-4 border-l-4 border-[#D6A64A] opacity-60 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1516]/80 to-transparent" />
+                <div className="absolute bottom-8 left-8">
+                  <span className="text-[10px] text-[#D6A64A] uppercase tracking-widest font-bold">Est. 2016</span>
+                  <p className="font-serif text-2xl text-white">The Master Kitchen</p>
+                </div>
               </div>
 
-              {/* Stacked Heritage Details */}
-              <div className="col-span-5 space-y-4">
-                <div className="overflow-hidden rounded-t-full border-[6px] border-white shadow-xl">
-                  <img
-                    src="/home_html/images/mainchef2.jpg"
-                    alt="Traditional Cooking"
-                    className="h-[240px] w-full object-cover"
-                  />
+              {/* Secondary Stack - Zero Radius */}
+              <div className="w-2/5 flex flex-col gap-6 mt-12">
+                <div className="overflow-hidden shadow-xl">
+                   <div className="aspect-[4/5]">
+                    <img
+                      src="/home_html/images/mainchef2.jpg"
+                      alt="Spices"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
-                <div className="overflow-hidden rounded-b-full border-[6px] border-white shadow-xl">
-                  <img
-                    src="/home_html/images/mainchef3.jpg"
-                    alt="Authentic Spices"
-                    className="h-[240px] w-full object-cover"
-                  />
+                <div className="overflow-hidden shadow-xl">
+                  <div className="aspect-[4/5]">
+                    <img
+                      src="/home_html/images/mainchef3.jpg"
+                      alt="Plating"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Imperial Seal Stat Card */}
-            <div className="absolute -bottom-8 -left-8 bg-[#1A1516] p-8 border-2 border-[#D6A64A] shadow-2xl flex flex-col items-center justify-center">
-                <div className="text-[#D6A64A] text-[10px] font-bold uppercase tracking-[0.5em] mb-2">Since</div>
-                <div className="text-5xl font-serif text-[#F5D38B]">2016</div>
-                <div className="h-[1px] w-full bg-[#D6A64A]/30 my-3" />
-                <div className="text-[9px] font-bold uppercase tracking-widest text-white text-center opacity-80">
-                  Culinary <br /> Excellence
-                </div>
-                {/* Small Seal detail */}
-                <div className="absolute -top-3 -right-3 h-10 w-10 bg-[#8B1538] rounded-full flex items-center justify-center border border-[#D6A64A]">
-                    <Award size={16} className="text-[#F5D38B]" />
-                </div>
-            </div>
+            </div>            
           </div>
 
         </div>
@@ -115,5 +111,4 @@ const HeritageChefSection = ({ navigate }) => {
   );
 };
 
-
-export default HeritageChefSection
+export default HeritageChefSection;

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Search, Plus, Menu, X } from 'lucide-react';
 import axios from 'axios';
+import { HOME_SECTION_SENTINELS } from '../data/homepageContent';
 
 const LOGO_URL = '/home_html/images/logo.png';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -47,37 +48,36 @@ const Header = ({ showSearch = false, onSearchChange = null, onAddToCart = null 
   }, [showSuggestions]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (location.pathname !== '/') {
-        setIsScrolled(true);
-        return;
+    if (location.pathname !== '/') {
+      setIsScrolled(true);
+      return undefined;
+    }
+
+    const heroEndSentinel = document.getElementById(HOME_SECTION_SENTINELS.heroEnd);
+
+    if (!heroEndSentinel) {
+      setIsScrolled(window.scrollY > 16);
+      return undefined;
+    }
+
+    const headerHeight = 88;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const hasPassedHero =
+          !entry.isIntersecting && entry.boundingClientRect.top <= headerHeight;
+
+        setIsScrolled(hasPassedHero);
+      },
+      {
+        rootMargin: `-${headerHeight}px 0px 0px 0px`,
+        threshold: 0,
       }
+    );
 
-      const aboutSection = document.getElementById('about');
-
-      if (aboutSection) {
-        setIsScrolled(window.scrollY >= aboutSection.offsetTop - 1);
-        return;
-      }
-
-      const heroSection = document.getElementById('home');
-
-      if (!heroSection) {
-        setIsScrolled(window.scrollY > 16);
-        return;
-      }
-
-      const heroScrollThreshold = Math.max(heroSection.offsetHeight - 1, 0);
-      setIsScrolled(window.scrollY >= heroScrollThreshold);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    observer.observe(heroEndSentinel);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      observer.disconnect();
     };
   }, [location.pathname]);
 
