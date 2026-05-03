@@ -30,12 +30,11 @@ import { motion } from 'framer-motion';
 import HotelGallery from './HotelGallery';
 import Testimonials from './Testimonials';
 import HotelAboutSection from './HotelAboutSection';
-import HeroSection from './Herosection';
-import HeritageAbout from './HotelAboutSection';
 import HeritageCategories from './HeritageCategories';
 import HeritageMenuSection from './HeritageMenu';
 import HeritageReservation from './HeritageReservation';
 import HeritageChefSection from './HeritageChefSection';
+import HomeHeroSection from './HomeHeroSection';
 const CATEGORY_IMAGE_MAP = {
   BEVERAGES: '/home_html/images/categories/BEVERAGES.jpg',
   MILKSHAKE: '/home_html/images/categories/MILKSHAKE.jpg',
@@ -221,8 +220,8 @@ const SpecialDishCard = ({ item }) => (
 const LegacyCompleteMenuSection = ({ navigate }) => {
   return (
     <section
-      className="relative px-4 py-24 bg-[#FCFBFA] overflow-hidden" // Soft premium white
-      data-testid="complete-menu-section"
+    className="relative px-4 py-24 bg-[#FCFBFA] overflow-hidden" // Soft premium white
+    data-testid="complete-menu-section"
     >
       {/* Very subtle brand glow in the background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_#A11A4308_0%,_transparent_70%)]" />
@@ -268,7 +267,6 @@ const LegacyCompleteMenuSection = ({ navigate }) => {
               </div>
             ))}
           </div>
-
           {/* Center Column: Professional Hero Image */}
           <div className="lg:col-span-6 order-1 lg:order-2">
             <div className="relative p-2">
@@ -518,7 +516,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchData();
-
+    
     const timer = setInterval(() => {
       const now = new Date();
       const midnight = new Date();
@@ -565,10 +563,9 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[linear-gradient(180deg,#FFF8F5_0%,#FFF0E6_100%)]">
       <Header />
-
-     <HeroSection/>
-<HeritageAbout/>
-     <HeritageCategories categories={categories} />
+      <HomeHeroSection />
+      <HotelAboutSection />
+      <HeritageCategories categories={categories} />
       <HeritageMenuSection/>
 
 

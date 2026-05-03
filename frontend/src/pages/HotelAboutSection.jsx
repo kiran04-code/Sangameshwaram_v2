@@ -1,109 +1,167 @@
-import React from "react";
-import { ArrowRight, Award } from "lucide-react";
+import React, { useRef, useLayoutEffect } from "react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const HeritageAbout = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const foodItems = [
+  {
+    name: "Paneer Butter Masala",
+    img: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80",
+  },
+  {
+    name: "North Indian Thali",
+    img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=80",
+  },
+  {
+    name: "Naan & Curry",
+    img: "https://plus.unsplash.com/premium_photo-1694141253763-209b4c8f8ace?w=500&auto=format&fit=crop&q=60",
+  },
+];
+
+const HotelAboutSection = () => {
+  const sectionRef = useRef(null);
+  const leftBlockRef = useRef(null);
+  const rightBlockRef = useRef(null);
+  const personImgRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        },
+      });
+
+      tl.from(".reveal-item", {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        stagger: 0.1,
+        ease: "expo.out",
+      })
+      .from(personImgRef.current, {
+        opacity: 0,
+        x: 40,
+        duration: 1.2,
+        ease: "power3.out"
+      }, "-=0.8");
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#FFFBF2] px-6 py-20 md:px-16 lg:px-28">
-      {/* --- BACKGROUND ORNAMENTATION --- */}
-      {/* Large Watermark - Using a more traditional font vibe */}
-      <h1 className="pointer-events-none absolute -top-10 right-[-5%] font-serif text-[150px] font-bold leading-none text-[#8d1238]/5 md:text-[250px] lg:text-[350px]">
-        CREST
-      </h1>
-      
-      {/* Traditional Pattern Overlay (Optional: Subtle Jaali or Mandala) */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/paper-fibers.png")` }} />
+    <section
+      ref={sectionRef}
+      className="relative h-full bg-white px-6 md:py-24 md:mt-90  md:px-16 lg:px-32 overflow-hidden"
+    >
+      {/* Subtle texture for a professional feel */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="relative z-10 mx-auto max-w-screen-2xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         
-        {/* LEFT CONTENT */}
-        <div className="pt-6">
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-[2px] w-12 bg-[#D6A64A]" />
-            <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#8d1238]">
-              THE LEGACY STORY
+        {/* LEFT BLOCK: Content & Food Gallery */}
+        <div ref={leftBlockRef} className="lg:col-span-7 space-y-10">
+          <div className="reveal-item">
+            <div className="flex items-center gap-3 mb-4">
+              <Sparkles size={16} className="text-[#8d1238]" />
+              <span className="text-[11px] uppercase tracking-[0.4em] text-gray-400 font-bold">
+                North Indian Heritage
+              </span>
+            </div>
+            <h2
+              style={{ fontFamily: "Cormorant Garamond, serif" }}
+              className="text-[48px] md:text-[72px] leading-[0.95] text-[#1a1a1a] font-light"
+            >
+              Tradition on a 
+              <span className="italic text-[#8d1238] font-medium text-[56px] md:text-[84px]">Plate</span>, 
+              Taste from the Heart.
+            </h2>
+          </div>
+
+          <div className="reveal-item">
+            <p className="max-w-xl text-[17px] leading-relaxed text-gray-500 font-light border-l border-gray-100 pl-8">
+              Sangameshwar Cafe brings authentic North Indian flavours with rich
+              spices, fresh ingredients, and warm hospitality.
             </p>
           </div>
 
-          <h2 className="font-serif text-[42px] font-bold leading-[1.1] text-[#1a1a1a] md:text-[60px] lg:text-[72px]">
-            Enjoy Every{" "}
-            <span className="italic text-[#8d1238] font-light">Moment</span> <br />
-            <span className="text-[#D6A64A]">Authentic</span> Flavors, 
-            <span className="text-[#8d1238]"> Royal Spirit</span>
-          </h2>
-
-          <div className="mt-12 flex flex-col md:flex-row gap-10">
-            {/* Decorative "Ampersand" or Initial */}
-            <div className="hidden md:flex items-center justify-center font-serif text-[120px] leading-none text-[#D6A64A]/20 border-r border-[#D6A64A]/30 pr-10">
-              &
-            </div>
-
-            <div className="space-y-8">
-              <p className="max-w-[550px] font-serif text-[20px] italic leading-relaxed text-[#333]">
-                "At Hotel Crest, we don’t just serve meals; we curate sensory
-                journeys that honor the rich Sangameshwar heritage while
-                embracing modern luxury."
-              </p>
-
-              <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-                <div className="flex items-center gap-4 text-[#8d1238]">
-                    <div className="p-3 rounded-full border border-[#D6A64A]">
-                        <Award size={24} />
-                    </div>
-                    <p className="text-[16px] font-medium text-black">
-                        A legacy defined by <br /> taste and service.
-                    </p>
+          {/* SIMPLIFIED FOOD CARDS: No Borders, cleaner shadows */}
+          <div className="reveal-item mt-12 grid grid-cols-3 gap-6 max-w-2xl">
+            {foodItems.map((item, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="overflow-hidden  aspect-[4/5] shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2">
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-
-                {/* Heritage Style Button: Sharp edges with gold border */}
-                <button className="group relative flex h-[80px] w-full max-w-[350px] items-center justify-between border-2 border-[#8d1238] bg-[#8d1238] px-8 text-white transition-all duration-300 hover:bg-transparent hover:text-[#8d1238]">
-                  <div className="text-left">
-                    <p className="text-[12px] font-bold tracking-widest opacity-80 uppercase">
-                      Discover
-                    </p>
-                    <p className="text-[16px] font-serif font-bold uppercase">
-                      Our Royal Legacy
-                    </p>
-                  </div>
-                  <ArrowRight className="h-8 w-8 transition-transform duration-300 group-hover:translate-x-2" />
-                  
-                  {/* Decorative Corner Accents for Button */}
-                  <div className="absolute -top-[6px] -left-[6px] h-3 w-3 border-t-2 border-l-2 border-[#D6A64A]" />
-                  <div className="absolute -bottom-[6px] -right-[6px] h-3 w-3 border-b-2 border-r-2 border-[#D6A64A]" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT IMAGE: The "Mehrab" Arch Frame */}
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative">
-            {/* The Arch Frame (Mehrab) */}
-            <div className="relative z-10 overflow-hidden rounded-t-full border-[12px] border-[#D6A64A] shadow-2xl">
-              <img
-                src="/edited-photo.png"
-                alt="Hotel Crest Staff"
-                className="h-[450px] w-auto object-cover transition-transform duration-700 hover:scale-105 md:h-[600px]"
-              />
-              {/* Image Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/40 to-transparent" />
-            </div>
-
-            {/* Decorative Background Shape for Image */}
-            <div className="absolute -bottom-6 -right-6 -z-10 h-full w-full rounded-t-full bg-[#8d1238]/10" />
-            
-            {/* Traditional Stamp/Badge */}
-            <div className="absolute -left-10 bottom-20 z-20 flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#D6A64A] bg-[#8d1238] text-center text-white shadow-xl rotate-[-12deg]">
-                <p className="font-serif text-[12px] font-bold leading-tight">
-                    ESTD <br /> <span className="text-lg text-[#D6A64A]">1998</span>
+                <p className="mt-4 text-center text-[12px] font-medium tracking-tight text-gray-400 group-hover:text-[#8d1238] transition-colors">
+                  {item.name}
                 </p>
-            </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* RIGHT BLOCK: Character & Signature */}
+        <div className="lg:col-span-5 relative bg- flex flex-col justify-center h-full pt-20 lg:pt-0">
+          <div ref={rightBlockRef} className="relative bg-white z-20 space-y-8">
+            <div className="reveal-item">
+              <p
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+                className="text-[34px] md:text-[42px] italic leading-tight text-[#8d1238]"
+              >
+                “Serving tradition with every smile.”
+              </p>
+              <p className="mt-6 text-[15px] leading-relaxed text-gray-400 font-light max-w-xs">
+                Every dish reflects heritage, taste, and warmth—bringing the essence of North India to your plate.
+              </p>
+            </div>
+
+            <div className="reveal-item">
+              <button className="group flex items-center gap-4 text-[12px] uppercase tracking-widest font-bold text-[#111]">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-100 bg-white transition-all duration-500 group-hover:bg-[#8d1238] group-hover:border-[#8d1238] group-hover:text-white">
+                  <ArrowRight size={18} />
+                </span>
+                About Us
+              </button>
+            </div>
+
+            {/* Signature Floating Badge */}
+            <div className="reveal-item mt-10 inline-flex items-center gap-4 rounded-2xl bg-white p-4 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-50">
+              <img
+                src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&q=80"
+                alt="Food"
+                className="h-14 w-14 rounded-xl object-cover"
+              />
+              <p className="text-[13px] font-medium text-[#1a1a1a]">
+                Fresh Indian <br /> 
+                <span className="text-gray-400 font-light">Specials Daily</span>
+              </p>
+            </div>
+          </div>
+
+          {/* THE CHARACTER: Integrated with a fade-out */}
+          <div className="absolute right-[-60px] bottom-[60px] w-full max-w-[450px] opacity-90">
+            <img
+              ref={personImgRef}
+              src="/edited-photo.png"
+              alt="Staff"
+              className="h-full w-full object-contain pointer-events-none select-none drop-shadow-2xl"
+            />
+            {/* Fade bottom gradient to hide cut-off edges */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+          </div>
+        </div>
+
       </div>
     </section>
   );
 };
 
-export default HeritageAbout;
+export default HotelAboutSection;
