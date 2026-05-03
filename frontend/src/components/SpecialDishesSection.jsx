@@ -1,8 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 /**
- * Stripped-back geometric Icon
+ * Geometric, architectural Veg Icon (Stripped-back Utility)
  */
 const VegStatusIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,111 +12,137 @@ const VegStatusIcon = () => (
 );
 
 /**
- * Geometric, architectural Showcase Section.
- * Completely stripped of traditional rounding or soft overlays.
+ * Dainty Dishes Showcase:
+ * Re-imagined 'Heritage' layout. Keeps the centered focus and serif typography
+ * from Image_4.png and the provided code, but changes text placement and color accents.
  */
-export default function GeometricDishesSection({ dishes = [] }) {
-  const navigate = useNavigate();
+export default function DaintyDishesShowcase({ dishes = [] }) {
+  const [active, setActive] = useState(0);
 
-  if (!dishes.length) {
-    return null;
-  }
+  if (!dishes.length) return null;
 
-  // Define a distinct geometric flow (3 items example)
-  // This layout creates an asymmetrical, architectural visual path.
-  const visualFlow = [
-    "md:col-span-2 md:row-span-2", // Item 1: Dominant Anchor
-    "md:col-span-1 md:row-span-1", // Item 2: Small Square
-    "md:col-span-1 md:row-span-1", // Item 3: Symmetrical Block
-  ];
+  const dish = dishes[active];
+
+  const nextDish = () => {
+    setActive((prev) => (prev + 1) % dishes.length);
+  };
+
+  const prevDish = () => {
+    setActive((prev) => (prev === 0 ? dishes.length - 1 : prev - 1));
+  };
 
   return (
-    <section className="relative bg-[#FCFBF7] py-24 lg:py-32 overflow-hidden font-sans">
+    <section className="relative overflow-hidden bg-[#FAF6F1] px-4 py-24 sm:px-6 lg:px-8 font-sans">
       
-      {/* Background: Geometric Skew Pattern (Minimalist and dynamic) */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#E5DCC5]/10" 
-           style={{ clipPath: 'polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)' }} />
+      {/* Background Graphic: Subtle Skew Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(214,166,74,0.05),transparent_40%)] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-7xl relative z-10">
         
-        {/* --- SHARP & REDUCED HEADER --- */}
-        <header className="mb-20 grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-10 border-b border-black/5 pb-12">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="h-px w-6 bg-[#8B1538]" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#8B1538]">
-                Chef's Edit
+        {/* --- HEADER --- */}
+        <header className="mb-20 text-center max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 justify-center mb-6">
+              <span className="h-px w-10 bg-[#D6A64A]/60" />
+              <span 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                className="text-4xl md:text-5xl font-light text-[#2A1F19]"
+              >
+                Our Signature <span className="italic text-[#D6A64A]">Collection</span>
               </span>
+              <span className="h-px w-10 bg-[#D6A64A]/60" />
             </div>
-            
-            <h2 className="font-serif text-5xl lg:text-7xl font-light leading-[1.1] text-[#1A1516]">
-              Modern <span className="italic font-normal text-[#D6A64A]">Refinement.</span>
-              <span className="block mt-2">Authentic Spirit.</span>
-            </h2>
-          </div>
 
-          <button
-            onClick={() => navigate("/menu")}
-            className="group flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-[#1A1516] border-b border-black/10 pb-2 hover:border-[#8B1538]"
-          >
-            Explore the Edit
-            <span className="w-6 h-px bg-[#D6A64A] transition-all group-hover:w-10" />
-          </button>
+            <p 
+              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+              className="text-lg text-[#6D615C] italic leading-relaxed max-w-2xl mx-auto"
+            >
+              Every dish is a curated edit, bringing together traditional flavours with refined modern plating. Fresh ingredients, time-honoured methods, and a passion for flavour.
+            </p>
         </header>
 
-        {/* --- GEOMETRIC FLOW MASONRY GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[290px]">
-          {dishes.map((item, index) => (
-            <article 
-              key={item.name} 
-              className={`relative group bg-white border border-black/5 flex flex-col transition-shadow duration-500 hover:shadow-xl ${visualFlow[index % visualFlow.length]}`}
-            >
-              
-              {/* Image Container: High fixed aspect, No curve masking */}
-              <div className="relative aspect-[3/4] md:aspect-auto md:flex-1 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                
-                {/* Simplified Price Corner */}
-                <div className="absolute top-0 right-0 bg-[#1A1516] p-4 text-center">
-                  <p className="text-white font-serif text-2xl font-normal">₹{item.price}</p>
-                </div>
-              </div>
+        {/* --- CENTRAL INTERFACE --- */}
+        <div className="relative flex flex-col items-center">
+          
+          {/* Floral Motif Background: Updated Color to Gold */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[600px] opacity-10 pointer-events-none">
+            <svg viewBox="0 0 100 100" fill="#D6A64A" xmlns="http://www.w3.org/2000/svg">
+               <path d="M50 0 C60 20, 90 30, 100 50 C90 70, 60 80, 50 100 C40 80, 10 70, 0 50 C10 30, 40 20, 50 0 Z M50 20 C55 35, 75 45, 80 50 C75 55, 55 65, 50 80 C45 65, 25 55, 20 50 C25 45, 45 35, 50 20 Z" />
+            </svg>
+          </div>
 
-              {/* Text Area: Simple, structured grid (Inter font for meta) */}
-              <div className="p-8 flex-none grid grid-cols-1 gap-5 border-t border-black/5">
-                <div className="flex justify-between items-start gap-4">
-                    <div className="flex items-center gap-3">
-                      <VegStatusIcon />
-                      <h3 className="font-serif text-3xl font-normal text-[#1A1516] leading-none">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <span className="shrink-0 text-[10px] font-bold text-[#8B1538]/70 tracking-widest font-sans">
-                       ★ 4.3 
-                    </span>
-                </div>
+          {/* Navigation Arrows: Keeps the soft, subtle placement */}
+          <button 
+            onClick={prevDish}
+            className="absolute left-[5%] md:left-[20%] top-[40%] md:top-[45%] -translate-y-1/2 z-30 h-11 w-11 rounded-full border border-black/10 bg-white flex items-center justify-center text-[#1A1516] transition hover:bg-[#8B1538] hover:text-white"
+          >
+            <ArrowLeft size={18} />
+          </button>
 
-                <p className="text-sm leading-relaxed text-[#5C5452] font-light italic font-serif">
-                  {item.description ||
-                    "A curated blend of refined spices, simmered to perfection for a premium experience."}
-                </p>
+          <button 
+            onClick={nextDish}
+            className="absolute right-[5%] md:right-[20%] top-[40%] md:top-[45%] -translate-y-1/2 z-30 h-11 w-11 rounded-full border border-black/10 bg-white flex items-center justify-center text-[#1A1516] transition hover:bg-[#8B1538] hover:text-white"
+          >
+            <ArrowRight size={18} />
+          </button>
 
-                {/* Streamlined sharp button */}
-                <button className="relative w-full flex items-center justify-center gap-4 bg-white hover:bg-[#8B1538] hover:text-white py-4 text-[11px] font-bold uppercase tracking-[0.35em] text-[#1A1516] transition-colors duration-500 border border-black/10">
-                  Add to Meal
-                  <span className="w-6 h-px bg-[#D6A64A] transition-all group-hover:w-10 group-hover:bg-[#FCFBF7]" />
-                </button>
-              </div>
+          {/* Main Dish Image: Focal point with specific shadow */}
+          <div className="relative z-10 w-[280px] h-[280px] md:w-[480px] md:h-[480px]">
+             <img 
+               src={dish.image} 
+               alt={dish.name}
+               className="w-full h-full object-contain drop-shadow-[0_45px_70px_rgba(0,0,0,0.2)]"
+             />
+          </div>
 
-            </article>
-          ))}
+          {/* Dish Details: Symmetrical text block replaces floating labels */}
+          <div className="mt-16 text-center max-w-xl mx-auto relative z-10">
+            <h4 className="font-serif italic text-3xl md:text-5xl text-[#2A1F19]/80 mb-6">
+               Bite-Sized,<br className="md:hidden"/> Fluffy,<br className="md:hidden"/> Irresistible
+            </h4>
+
+            <h3 className="text-3xl md:text-5xl font-serif font-medium text-[#1A1516] mb-4">
+              {dish.name}
+            </h3>
+            
+            {/* Integrated Rating/Veg Icon */}
+            <div className="flex items-center justify-center gap-6 mb-8 border-t border-[#D6A64A]/20 pt-8">
+               <div className="flex items-center gap-3">
+                 <VegStatusIcon />
+                 <span className="text-[#8B1538] text-sm">4.3 ★</span>
+               </div>
+               <div className="h-4 w-px bg-[#D6A64A]/30" />
+               <span className="font-serif italic text-[#8B1538] text-2xl">₹{dish.price}</span>
+            </div>
+
+            <p className="text-sm md:text-base text-[#6D615C] font-serif leading-relaxed italic mb-10 px-4">
+              {dish.description || "A delicious traditional favourite prepared with rich spices, fresh ingredients, and our signature Taste."}
+            </p>
+
+            {/* Main CTA Button: Simplified and sharp */}
+            <button className="relative w-full flex items-center justify-center gap-4 bg-[#1A1516] hover:bg-[#8B1538] py-5 text-[12px] font-bold uppercase tracking-[0.4em] text-white transition-colors rounded-sm shadow-xl border border-[#D6A64A]/30">
+                Add to Meal
+                <span className="w-8 h-px bg-[#D6A64A]" />
+            </button>
+          </div>
+
         </div>
 
+        {/* View All Menu Footer CTA */}
+        <footer className="mt-20 text-center border-t border-black/5 pt-12">
+            <button 
+              onClick={() => navigate('/menu')}
+              className="group flex items-center justify-center gap-3 mx-auto text-[11px] font-bold uppercase tracking-widest text-[#1A1516] hover:text-[#8B1538] transition-colors"
+            >
+              <span className="flex items-center justify-center w-9 h-9 rounded-full border border-black/10 group-hover:border-[#8B1538] transition-all">
+                <ArrowUpRight size={16} />
+              </span>
+              View Full Menu
+            </button>
+        </footer>
+        
       </div>
     </section>
   );
 }
+
+

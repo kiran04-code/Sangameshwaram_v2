@@ -4,9 +4,6 @@ import { ArrowRight } from "lucide-react";
 const HeritageChefSection = ({ navigate }) => {
   return (
     <section className="relative bg-[#FAF7F2] py-24 lg:py-32 overflow-hidden">
-      {/* Soft minimalist background - Straight edges */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F3EAD3]/30" />
-      
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           

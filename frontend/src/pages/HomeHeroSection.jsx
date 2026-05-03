@@ -1,10 +1,6 @@
 import React, { useRef, useLayoutEffect } from "react";
 import { ChevronDown } from "lucide-react";
-import {
-  HERO_CONTENT,
-  HOME_SECTION_IDS,
-  HOME_SECTION_SENTINELS,
-} from "../data/homepageContent";
+import { HERO_CONTENT, HOME_SECTION_IDS } from "../data/homepageContent";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -239,7 +235,7 @@ const HomeHeroSection = () => {
 
         <h1
           ref={titleRef}
-          className="select-none text-[18vw] md:text-[10vw] font-black uppercase leading-[0.85] tracking-[-0.07em] text-[#d6ae50] drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] whitespace-nowrap"
+          className="max-w-[94vw] select-none text-[14vw] sm:text-[16vw] md:text-[10vw] font-black uppercase leading-[0.85] tracking-[-0.07em] text-[#d6ae50] drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] whitespace-normal break-words md:whitespace-nowrap md:break-normal"
         >
           {HERO_CONTENT.title}
         </h1>
@@ -275,12 +271,6 @@ const HomeHeroSection = () => {
       >
         <ChevronDown size={34} strokeWidth={1.4} />
       </button>
-
-      <div
-        id={HOME_SECTION_SENTINELS.heroEnd}
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 h-px w-full"
-      />
     </section>
   );
 };

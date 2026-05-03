@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Star } from "lucide-react";
 
 const reviews = [
   {
@@ -61,58 +60,83 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-14">
-          <p className="mb-3 text-xs uppercase tracking-[0.4em] text-[#8B1538]">
-            Testimonials
-          </p>
+    <section className="overflow-hidden bg-[#FAF7F2] py-24 lg:py-32 font-sans">
 
-          <h2
-            style={{ fontFamily: "Cormorant Garamond, serif" }}
-            className="text-4xl text-[#1a1a1a] md:text-6xl"
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        
+        {/* --- SHARP & MINIMAL HEADER --- */}
+        <header className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-10">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="h-px w-8 bg-[#8B1538]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#8B1538]">
+                Authentic Craft
+              </span>
+            </div>
+            
+            <h2 className="font-serif text-5xl lg:text-7xl leading-[1.1] text-[#1A1516]">
+              Food made <span className="text-[#8B1538]">slowly,</span>
+              <span className="block mt-2">served with heart.</span>
+            </h2>
+          </div>
+
+          <button
+            className="group flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.3em] text-[#1A1516] self-start md:self-end border-b border-black/10 pb-2 hover:border-[#8B1538]"
           >
-            What Our <span className="italic text-[#8B1538]">Guests Say</span>
-          </h2>
-        </div>
+            Explore Full Edit
+            <span className="w-6 h-px bg-[#D6A64A] transition-all group-hover:w-10" />
+          </button>
+        </header>
 
+        {/* --- SLIDER GRID --- */}
         <div className="overflow-hidden">
-          <div ref={sliderRef} className="flex gap-8">
+          <div ref={sliderRef} className="flex gap-10 py-6">
             {[...reviews, ...reviews].map((item, i) => (
-              <div
-                key={i}
-                className="min-w-[320px] border border-[#E6D4B9] bg-white p-6 shadow-[0_18px_40px_rgba(87,49,27,0.08)]"
+              <article 
+                key={i} 
+                className="relative group min-w-[340px] bg-white p-8 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col gap-6 border border-black/5"
               >
-                <div className="mb-5 flex items-center gap-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-14 w-14 object-cover ring-1 ring-[#E6D4B9]"
-                  />
-                  <div>
-                    <p className="font-semibold text-[#1a1a1a]">{item.name}</p>
-                    <p className="text-xs uppercase tracking-wider text-[#8B1538]">
-                      {item.role}
-                    </p>
+                
+                {/* Header: Symmetrical metadata structure */}
+                <div className="flex justify-between items-start gap-4 pb-6 border-b border-black/5">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="h-14 w-14 object-cover border border-black/5 shrink-0" 
+                    />
+                    <div>
+                      <p className="font-serif text-lg text-[#1A1516]">{item.name}</p>
+                      <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-[#8B1538]">
+                        {item.role}
+                      </p>
+                    </div>
                   </div>
+                  {/* Reduced Rating: Minimalist text notation */}
+                  <span className="shrink-0 text-[10px] font-bold text-[#D6A64A] tracking-widest font-sans">
+                     5.0 ★
+                  </span>
                 </div>
 
-                <div className="mb-4 flex gap-1 text-[#D6A64A]">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} size={14} fill="currentColor" />
-                  ))}
-                </div>
-
-                <p
+                {/* Content: High Contrast Typography */}
+                <p 
                   style={{ fontFamily: "Cormorant Garamond, serif" }}
-                  className="text-lg italic leading-8 text-[#2D1B1E]"
+                  className="flex-1 text-lg italic leading-relaxed text-[#2D1B1E] font-light max-w-sm"
                 >
                   "{item.quote}"
                 </p>
-              </div>
+
+                {/* Simplified sharp button */}
+                <button className="relative w-full flex items-center justify-center gap-3 bg-[#1A1516] group-hover:bg-[#8B1538] py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-white transition-colors duration-500">
+                  Read Full Chronicle
+                  <span className="w-6 h-px bg-[#D6A64A] transition-all group-hover:w-10" />
+                </button>
+                
+              </article>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );
