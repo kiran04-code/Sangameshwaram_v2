@@ -53,6 +53,13 @@ const Header = ({ showSearch = false, onSearchChange = null, onAddToCart = null 
         return;
       }
 
+      const aboutSection = document.getElementById('about');
+
+      if (aboutSection) {
+        setIsScrolled(window.scrollY >= aboutSection.offsetTop - 1);
+        return;
+      }
+
       const heroSection = document.getElementById('home');
 
       if (!heroSection) {
@@ -60,8 +67,7 @@ const Header = ({ showSearch = false, onSearchChange = null, onAddToCart = null 
         return;
       }
 
-      const navbarHeight = 88;
-      const heroScrollThreshold = Math.max(heroSection.offsetHeight - navbarHeight, 0);
+      const heroScrollThreshold = Math.max(heroSection.offsetHeight - 1, 0);
       setIsScrolled(window.scrollY >= heroScrollThreshold);
     };
 

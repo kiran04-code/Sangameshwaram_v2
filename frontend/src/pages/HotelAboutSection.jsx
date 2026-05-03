@@ -42,12 +42,12 @@ const HotelAboutSection = () => {
         stagger: 0.1,
         ease: "expo.out",
       })
-      .from(personImgRef.current, {
-        opacity: 0,
-        x: 40,
-        duration: 1.2,
-        ease: "power3.out"
-      }, "-=0.8");
+        .from(personImgRef.current, {
+          opacity: 0,
+          x: 40,
+          duration: 1.2,
+          ease: "power3.out"
+        }, "-=0.8");
 
     }, sectionRef);
     return () => ctx.revert();
@@ -56,34 +56,37 @@ const HotelAboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-full bg-white px-6 md:py-24 md:mt-90  md:px-16 lg:px-32 overflow-hidden"
+      id="about"
+      className="relative h-full overflow-hidden bg-white px-6 py-10 md:mt-90 md:px-16 md:py-24 lg:px-32"
     >
       {/* Subtle texture for a professional feel */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
 
       <div className="relative z-10 mx-auto max-w-screen-2xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-        
+
         {/* LEFT BLOCK: Content & Food Gallery */}
         <div ref={leftBlockRef} className="lg:col-span-7 space-y-10">
           <div className="reveal-item">
             <div className="flex items-center gap-3 mb-4">
-              <Sparkles size={16} className="text-[#8d1238]" />
-              <span className="text-[11px] uppercase tracking-[0.4em] text-gray-400 font-bold">
+              <span
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+                className="text-[28px] italic leading-none text-[#5f6476] md:text-[34px]"
+              >
                 North Indian Heritage
               </span>
             </div>
             <h2
               style={{ fontFamily: "Cormorant Garamond, serif" }}
-              className="text-[48px] md:text-[72px] leading-[0.95] text-[#1a1a1a] font-light"
+              className="text-[28px] md:text-[62px]  leading-[0.95] text-[#1a1a1a] font-medium"
             >
-              Tradition on a 
-              <span className="italic text-[#8d1238] font-medium text-[56px] md:text-[84px]">Plate</span>, 
+              Tradition on a
+              <span className=" text-[#8d1238] "> Plate.</span> <br />
               Taste from the Heart.
             </h2>
           </div>
 
           <div className="reveal-item">
-            <p className="max-w-xl text-[17px] leading-relaxed text-gray-500 font-light border-l border-gray-100 pl-8">
+            <p className="max-w-xl text-[17px] leading-relaxed text-gray-500 font-light border-l border-gray-100 ">
               Sangameshwar Cafe brings authentic North Indian flavours with rich
               spices, fresh ingredients, and warm hospitality.
             </p>
@@ -109,8 +112,8 @@ const HotelAboutSection = () => {
         </div>
 
         {/* RIGHT BLOCK: Character & Signature */}
-        <div className="lg:col-span-5 relative bg- flex flex-col justify-center h-full pt-20 lg:pt-0">
-          <div ref={rightBlockRef} className="relative bg-white z-20 space-y-8">
+        <div className="lg:col-span-5 relative md:mt-60 bg- flex flex-col justify-center h-full  pt-20 lg:pt-0">
+          <div ref={rightBlockRef} className="relative bg-white z-20 ">
             <div className="reveal-item">
               <p
                 style={{ fontFamily: "Cormorant Garamond, serif" }}
@@ -140,14 +143,14 @@ const HotelAboutSection = () => {
                 className="h-14 w-14 rounded-xl object-cover"
               />
               <p className="text-[13px] font-medium text-[#1a1a1a]">
-                Fresh Indian <br /> 
+                Fresh Indian <br />
                 <span className="text-gray-400 font-light">Specials Daily</span>
               </p>
             </div>
           </div>
 
           {/* THE CHARACTER: Integrated with a fade-out */}
-          <div className="absolute right-[-60px] bottom-[60px] w-full max-w-[450px] opacity-90">
+          <div className="absolute right-[-60px] md:bottom-[60px] bottom-[90px] w-full max-w-[450px] opacity-90">
             <img
               ref={personImgRef}
               src="/edited-photo.png"

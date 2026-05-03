@@ -163,7 +163,12 @@ const HomeHeroSection = () => {
 
   const handleScroll = () => {
     const nextSection = document.getElementById(HOME_SECTION_IDS.about);
-    if (nextSection) nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (nextSection) {
+      window.scrollTo({
+        top: nextSection.offsetTop,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
