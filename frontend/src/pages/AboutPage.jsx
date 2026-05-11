@@ -27,7 +27,7 @@ const highlights = [
 ];
 
 const storyPoints = [
-  'Built for everyday cafe cravings with a warm Pune neighborhood feel.',
+  'Built for everyday cafe ,cravings with a warm Pune neighborhood feel.',
   'A menu that blends breakfast comfort, filling mains, and refreshing drinks.',
   'Focused on consistent taste, clean presentation, and a polished customer experience.',
 ];
