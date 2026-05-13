@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Lock, LogIn, User } from 'lucide-react';
 import { useAdmin } from '../context/AdminContext';
-import LanguageSwitcher from '../components/LanguageSwitcher';
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 const API = `${BACKEND_URL}/api`;
